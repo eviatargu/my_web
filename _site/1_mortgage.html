@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.36">
+<meta name="generator" content="quarto-1.0.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -202,7 +202,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="background" class="level1">
 <h1>Background</h1>
-<p>This is a short explanation of the simulation implementation we did in the research <a href="https://www.gov.il/he/departments/publications/reports/mortgagemarket-final">Information problems in the mortgage market in Israel: price dispersion and search</a>. For more information one can read the final report or dive even more into technical details published in the <a href="https://www.gov.il/he/departments/publications/reports/mortgagemarket-draft">draft with the annexes</a>.</p>
+<p>This is a short explanation of the simulation implementation we did in the research <a href="https://www.gov.il/he/departments/publications/reports/mortgagemarket-final">Information problems in the mortgage market in Israel: price dispersion and search</a>. For more information one can read the final report or dive even more into technical details published in the <a href="https://www.gov.il/he/departments/publications/reports/mortgagemarket-draft">draft with the annexes</a>. sadly, the report was published solely in Hebrew, though there is an extended abstract (8 pages long) in <a href="mortgage_data/Information%20Asymmetry%20and%20the%20Gains%20from%20Shopping%20Evidence%20from%20the%20Israeli%20Mortgage%20Market.pdf">this link</a></p>
+<p>there is a short version in English of the main results from the paper in thins link <a href="mortgage_data/Information%20Asymmetry%20and%20the%20Gains%20from%20Shopping%20Evidence%20from%20the%20Israeli%20Mortgage%20Market.pdf">someFile</a></p>
 <p>The data-base used for the mortgage research consisted of nearly all mortgage data documented by the 3 largest banks in Israel in the years 2015-2017. In addition, we had all official mortgage bids consumers received in those years from the entire banking system. (Accessing this elaborate data is one of the perks of working in the competition authority)</p>
 <p>It took me several month to build a unified data-base from the 3 banks. The aim was to keep as much explanatory variables as possible so we can learn what determines the price consumers pay across the entire sample simultaneously.</p>
 <p>As we learned the data, we observed substantial price dispersion between customers. Even though we practically had everything the bank documented about the loan, regression model’s residuals were highly dispersed. The models presented varying residual dispersion between non-bidders (consumers that don’t get another bid from another bank) and bidders. In addition, our estimates of the effect of extra bid on the price consumer will pay seemed rather small. Our qualitative information about the market suggested that there are substantial <a href="https://en.wikipedia.org/wiki/Search_cost">search costs</a> consumers endure. So, we wanted to exemplify what should be the change in price in a friction-less environment when the customer gets more bids before purchase of a mortgage loan.</p>
@@ -410,11 +411,11 @@ The next function computes the predictions for each list of models.</p>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(customer_10)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  simulation_n id bank prediction A B C
-1            1 10    A       3.47 1 0 0
-2            2 10    A       3.63 1 0 0
-3            3 10    A       3.05 1 0 0
-4            4 10    A       4.09 1 0 0
-5            5 10    A       3.02 1 0 0
+1            1 10    A       3.17 1 0 0
+2            2 10    A       3.73 1 0 0
+3            3 10    A       3.72 1 0 0
+4            4 10    A       3.77 1 0 0
+5            5 10    A       3.63 1 0 0
 6            6 10    A       3.16 1 0 0</code></pre>
 </div>
 </div>
@@ -447,11 +448,12 @@ The next function computes the predictions for each list of models.</p>
 </div>
 <p>Lets take it with a boxplot:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(customer_10,<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(bank, prediction, <span class="at">.fun =</span> median),</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">y =</span> prediction)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="fl">4.5</span>)) <span class="sc">+</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Bank combination bids taken from"</span>, </span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Predicted price"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(customer_10,</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">fct_reorder</span>(bank, prediction, <span class="at">.fun =</span> median),<span class="at">y =</span> prediction)) <span class="sc">+</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="fl">4.5</span>)) <span class="sc">+</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Bank combination bids taken from"</span>,</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Predicted price"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="1_mortgage_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid" width="672"></p>
 </div>
