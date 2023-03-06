@@ -1,0 +1,19 @@
+---
+title: "Eviatar Guttman"
+---
+
+I'm an Economist and data scientists at the Research department of the [Israeli Competition Authority](https://www.gov.il/en/departments/competition/govil-landing-page). I like working with data. This site is intended to present some fun code stuff I have done.
+
+::: {.callout-warning icon="false"}
+## diclaimer
+
+*The views expressed herein are entirely mine and should not be purported to reflect those of the Israel competition Authority.*
+:::
+
+1.  In a research project called [Information problems in the mortgage market in Israel: price dispersion and search](https://www.gov.il/he/departments/publications/reports/mortgagemarket-final) we predicted the entire counter-factual price distribution of mortgage loans had the customers would have asked for more bank bids in a friction-less environment. The [code](1_mortgage.qmd) example shown here replicates the core idea of performing 297 quantile regressions and using its predictions to build a new hypothetical price distribution through simulation.
+
+2.  Merger simulation is a framework that uses economic models grounded in the theory of industrial organization to predict the effect of mergers on prices in markets. Merger simulation is at the frontier of the empirical economics used by competition authorities. The examples shown here are predominant techniques in merger simulation implementation. We starts with a little bit of [background](2_merger_sim_intro.qmd), continue with a [simplified example](3_multinomial_logit.qmd) for clarity and finishes with a more advanced [example](4_nested.qmd) accompanied with production-level code.
+
+My intent is to expand with more examples in the future as time will allow.
+
+You can contact me at [eviatargu\@competition.gov.il]{.underline}

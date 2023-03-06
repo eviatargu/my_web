@@ -1,0 +1,30 @@
+project:
+  type: website
+
+website:
+  title: "Eviatar Guttman"
+  navbar:
+    left:
+      - text: Mortgage Simulation
+        file: 1_mortgage.qmd
+      - text: "Merger Simulation"
+        menu:
+          - text: Introduction
+            file: 2_merger_sim_intro.qmd
+          - text: Multinomial logit
+            file: 3_multinomial_logit.qmd
+          - text: Nested Logit
+            file: 4_nested.qmd
+
+  page-navigation: true
+  page-footer: "Copyright 2022, Eviatar Guttman" 
+        
+
+format:
+  html:
+    theme: Flatly
+    css: styles.css
+    toc: true
+
+editor: visual
+

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Eviatar Guttman - formulas</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Eviatar Guttman</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./1_mortgage.html">Mortgage Simulation</a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-merger-simulation" role="button" data-bs-toggle="dropdown" aria-expanded="false">Merger Simulation</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-merger-simulation">    
+        <li>
+    <a class="dropdown-item" href="./2_merger_sim_intro.html">
+ <span class="dropdown-text">Introduction</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./3_multinomial_logit.html">
+ <span class="dropdown-text">Multinomial logit</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./4_nested.html">
+ <span class="dropdown-text">Nested Logit</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#the-mathematical-model" id="toc-the-mathematical-model" class="nav-link active" data-scroll-target="#the-mathematical-model">The Mathematical Model</a></li>
+  <li><a href="#logit-demand-function" id="toc-logit-demand-function" class="nav-link" data-scroll-target="#logit-demand-function">Logit demand function</a></li>
+  <li><a href="#logit" id="toc-logit" class="nav-link" data-scroll-target="#logit">logit</a></li>
+  <li><a href="#nested" id="toc-nested" class="nav-link" data-scroll-target="#nested">nested</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">formulas</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<section id="the-mathematical-model" class="level1">
+<h1>The Mathematical Model</h1>
+<p>best explanation of how the betrand model works is written by <a href="mailto:jonas@bjornerstedt.org">Jonas Björnerstedt</a> (Swedish competition authority) and <a href="mailto:frank.verboven@kuleuven.be">Frank Verboven</a> (University of Leuven) in their <a href="https://sites.google.com/site/frankverbo/data-and-software/merger-simulation-with-nested-logit-demand">merger simulation implementation in stata</a>.</p>
+<p>The next few images are just section 2 of their paper:</p>
+<p><img src="simulation_data/verboven1.PNG" class="img-fluid"></p>
+<p><img src="simulation_data/verboven2.PNG" class="img-fluid"></p>
+<p><img src="simulation_data/verboven3.PNG" class="img-fluid"></p>
+</section>
+<section id="logit-demand-function" class="level1">
+<h1>Logit demand function</h1>
+<p>Their are <span class="math inline">\(j\)</span> products, indexed by <span class="math inline">\(j = 1, ...,J\)</span> . The demand for product <span class="math inline">\(j\)</span> is <span class="math inline">\(q_j(\mathbf{p})\)</span>. <span class="math inline">\(\mathbf{p}\)</span> is a <span class="math inline">\(J X 1\)</span> price vector and the costs of producing the the product is <span class="math inline">\(c_j\)</span>. Each firm <span class="math inline">\(f\)</span> owns a subset of products <span class="math inline">\(F_f\)</span> and chooses its own prices to maximize</p>
+<p><span class="math display">\[
+\Pi_f(\mathbf{p}) = \sum_{j \in F_f}(p_j -c_j)q_j (\mathbf{p}) + \sum_{j \notin F_f}(p_j -c_j )q_j(\mathbf{p})     
+\]</span></p>
+<p>A Bertrand- Nash equilibrium equilibrium is defined by the system of first order conditions:</p>
+<p><span class="math display">\[
+q_j(\mathbf{p}) + \sum_{k \in F_f}(p_k - c_k)
+\frac{\partial q_k(\mathbf{p})}{\partial p_j} +
+q_j(\mathbf{p}) + \sum_{k \notin F_f}(p_k - c_k)
+\frac{\partial q_k(\mathbf{p})}{\partial p_j},
+j = 1, ...,J
+\]</span></p>
+<p>define <span class="math inline">\(\theta\)</span> to by a <span class="math inline">\(JXJ\)</span> product ownership matrix with <span class="math inline">\(\theta(j,k) =1\)</span> if products <span class="math inline">\(j\)</span> and <span class="math inline">\(k\)</span> are owned by the same firm and <span class="math inline">\(0\)</span> otherwise. let <span class="math inline">\(q(\mathbf{p})\)</span> be the demand vector,</p>
+<p><span class="math inline">\(\Delta\mathbf{p} ==\frac{\partial q(\mathbf{p})}{\partial p^d}\)</span></p>
+<p>be the <span class="math inline">\(jxj\)</span> Jacobian of first derivatives and <strong>c</strong> be the jX1 marginal cost vectr we can write is vector notation as:</p>
+<p>Firm <span class="math inline">\(k \in K\)</span> chooses the prices <span class="math inline">\(\{p_i\}_{i=1}^{n_k}\)</span> of its products so as to maximize profits. Mathematically, firm <span class="math inline">\(k\)</span> solves:</p>
+<span class="math display">\[\begin{align*}
+\max_{\{p_i\}_{i=1}^{n_k}} &amp;\sum_{i=1}^{n_k}(\omega_{ik})(p_i - c_i)q_i,
+\end{align*}\]</span>
+<p>where <span class="math inline">\(\omega_{ik}\)</span> is the share of product <span class="math inline">\(i\)</span>’s profits earned by firm <span class="math inline">\(k\)</span>, so that <span class="math inline">\(\sum\limits_{k\in K} \omega_{ik}\le 1\)</span>. <span class="math inline">\(q_i\)</span>, the quantity sold of product <span class="math inline">\(i\)</span>, is assumed to be a twice differentiable function of <em>all</em> product prices.</p>
+<p>Differentiating profits with respect to each <span class="math inline">\(p_i\)</span> yields the following first order conditions (FOCs):</p>
+<span class="math display">\[\begin{align*}
+  \partial p_i&amp;\equiv \omega_{ik}q_i +\sum_{j=1}^{n}\omega_{jk}( p_j - c_j)\frac{\partial q_j}{\partial
+    p_i}=0&amp; \mbox{ for all $i\in n_k$}
+\end{align*}\]</span>
+<p>which may be rewritten as</p>
+<span class="math display">\[\begin{align*}
+  \partial p_i&amp;\equiv \omega_{ik}r_i + \sum_{j=1}^{n} \omega_{jk}r_jm_j\epsilon_{ji}=0&amp; \mbox{ for all $i\in n_k$},
+\end{align*}\]</span>
+<p>where <span class="math inline">\(r_i\equiv\frac{p_iq_i}{\sum\limits_{j=1}^np_jq_j}\)</span> is product <span class="math inline">\(i\)</span>’s revenue share, <span class="math inline">\(m_i\equiv\frac{p_i-c_i}{p_i}\)</span> is product <span class="math inline">\(i\)</span>’s gross margin, and <span class="math inline">\(\epsilon_{ij}\equiv\frac{\partial q_i}{\partial p_j}\frac{p_j}{q_i}\)</span> is the elasticity of product <span class="math inline">\(i\)</span> with respect to the price of product <span class="math inline">\(j\)</span>.</p>
+<p>The FOCs for all products may be stacked and then represented using the following matrix notation: <span class="math display">\[\begin{align*}
+  (r\circ diag(\Omega)) + (E\circ\Omega)'(r \circ m)=0
+  (\#eq:FOC1)
+\end{align*}\]</span></p>
+<p>rearranging yields</p>
+<span class="math display">\[\begin{align*}
+  m_{Bertrand}= -\{(E\circ\Omega)'^{-1}(r\circ diag(\Omega))\} \circ \frac{1}{r}
+  (\#eq:FOC2)
+\end{align*}\]</span>
+<p>where <span class="math inline">\(r\)</span> and <span class="math inline">\(m\)</span> are <span class="math inline">\(n\)</span>-length vectors of revenue shares and margins, <span class="math inline">\(E = \left(\begin{smallmatrix} \epsilon_{11}&amp;\ldots&amp;\epsilon_{1n}\\\vdots &amp;\ddots&amp;\vdots\\\epsilon_{n1}&amp;\ldots&amp;\epsilon_{nn} \end{smallmatrix}\right)\)</span> is a <span class="math inline">\(n \times n\)</span> matrix of own- and cross-price elasticities, and <span class="math inline">\(\Omega=\left(\begin{smallmatrix} \omega_{11}&amp;\ldots&amp;\omega_{1n}\\\vdots &amp;\ddots&amp;\vdots\\\omega_{n1}&amp;\ldots&amp;\omega_{nn} \end{smallmatrix}\right)\)</span> is an <span class="math inline">\(n \times n\)</span> matrix whose <span class="math inline">\(i,j\)</span>th element equals the share of product <span class="math inline">\(j\)</span>’s profits owned by the firm setting product <span class="math inline">\(i\)</span>’s price.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> In many cases, product <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> are wholly owned by a single firm, in which cases the <span class="math inline">\(i,j\)</span>th element of <span class="math inline">\(\Omega\)</span> equals 1 if <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> are owned by the same firm and 0 otherwise. Under partial ownership, the columns of the matrix formed from the unique rows of <span class="math inline">\(\Omega\)</span> must sum to 1. ‘<span class="math inline">\(diag\)</span>’ returns the diagonal of a square matrix and ‘<span class="math inline">\(\circ\)</span>’ is the Hadamard (entry-wise) product operator.</p>
+<p>The solution to system @ref(eq:FOC1) yields equilibrium prices conditional on the ownership structure <span class="math inline">\(\Omega\)</span>. A (partial) merger is modeled as the solution to system @ref(eq:FOC1) where <span class="math inline">\(\Omega\)</span> is changed to reflect the change in ownership.</p>
+</section>
+<section id="logit" class="level1">
+<h1>logit</h1>
+<p>Logit demand is based on a discrete choice model that assumes that each consumer is willing to purchase at most a single unit of one product from the <span class="math inline">\(n\)</span> products available in the market. The assumptions underlying Logit demand imply that the probability that a consumer purchases product <span class="math inline">\(i \in n\)</span> is given by</p>
+<span class="math display">\[\begin{align*}
+  s_i=&amp; \frac{\exp(V_i)}{\sum\limits_{k \in n}\exp(V_k)},&amp;
+\end{align*}\]</span>
+<p>where <span class="math inline">\(s_i\)</span> is product <span class="math inline">\(i\)</span>’s <em>quantity</em> share and <span class="math inline">\(V_i\)</span> is the (average) indirect utility that a consumer receives from purchasing product <span class="math inline">\(i\)</span>. We assume that <span class="math inline">\(V_i\)</span> takes on the following form</p>
+<span class="math display">\[\begin{align*}
+  V_i=&amp;\delta_i + \alpha p_i,&amp;\alpha&lt;0.
+\end{align*}\]</span>
+<p>The Logit demand system yields the following own- and cross-price elasticities:</p>
+<span class="math display">\[\begin{align*}
+  \epsilon_{ii}=&amp;\alpha (1-s_i)p_i \\
+  \epsilon_{ij}=&amp;-\alpha s_jp_j
+\end{align*}\]</span>
+</section>
+<section id="nested" class="level1">
+<h1>nested</h1>
+<p>By construction, Logit demand assumes that diversion occurs according to quantity share. While convenient, one potential drawback of this assumption is that diversion according to share may not accurately represent consumer substitution patterns. One way to relax this assumption is to group the <span class="math inline">\(n\)</span> products into <span class="math inline">\(n &gt; H \ge 2\)</span> <em>nests</em>, with products in the same nest assumed to be closer substitutes than products in different nests.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> <code>logit.nests</code>‘s ’nests’ argument may be used to specify a length-<span class="math inline">\(n\)</span> vector identifying which nest each product belongs to.</p>
+<p>The assumptions underlying nested Logit demand imply that the probability that a consumer purchases product <span class="math inline">\(i\)</span> in nest <span class="math inline">\(h\in H\)</span> is given by</p>
+<span class="math display">\[\begin{align*}
+  s_i=&amp; s_{i|h}s_h,&amp;\\
+  s_{i|h}=&amp;\frac{\exp(\frac{V_i}{\sigma_h})}{\sum\limits_{k \in
+      h}\exp(\frac{V_k}{\sigma_h})},&amp; 1 \ge \sigma_h \ge 0\\
+  s_{h}=&amp; \frac{\exp(\sigma_hI_h)}{\sum\limits_{l\in H}\exp(\sigma_lI_l)},&amp; I_h=\log\sum\limits_{k \in h}\exp\left(\frac{V_k}{\sigma_h}\right).
+\end{align*}\]</span>
+<p>We assume that <span class="math inline">\(V_i\)</span> takes on the following form</p>
+<span class="math display">\[\begin{align*}
+  V_i=&amp;\delta_i + \alpha p_i,&amp; \alpha\le 0.
+\end{align*}\]</span>
+<p>The Nested Logit demand system yields the following own- and cross-price elasticities:</p>
+<span class="math display">\[\begin{align*}
+  \epsilon_{ii}=&amp;
+    [1-s_i + (\frac{1}{\sigma_h}-1)(1-s_{i|h})]\alpha p_i, \\
+  \epsilon_{ij}=&amp;\begin{cases}
+    -[s_j + (\frac{1}{\sigma_h}-1)s_{j|h}]\alpha p_j, &amp;
+    \text{if $i,j$ are both in nest $h$}.\\
+    -\alpha s_jp_j, &amp; \text{if $i$ is not in nest $h$ but $j$ is}.
+  \end{cases}
+\end{align*}\]</span>
+<p>Notice how these cross-price elasticities are identical to the non-nested Logit elasticities when products <span class="math inline">\(i,j\)</span> are in different nests, but are larger when products <span class="math inline">\(i,j\)</span> are in the same nests. This observation is consistent with the claim that products within a nest are closer substitutes than products outside of a nest.</p>
+<p>In contrast to nested LA-AIDS, which must calibrate <span class="math inline">\(\frac{H(H-1)}{2}\)</span> nesting parameters, only <span class="math inline">\(H\)</span> nesting parameters must be calibrated. By default, <code>calcSlopes</code> constrains all the nesting parameters to be equal to one another, <span class="math inline">\(\sigma_h=\sigma\)</span> for all <span class="math inline">\(h\in H\)</span>. This reduces the number of parameters that need to be estimated to <span class="math inline">\(n+2\)</span> (<span class="math inline">\(n\)</span> <span class="math inline">\(\delta\)</span>s, <span class="math inline">\(\alpha,\sigma\)</span>) which means users must furnish enough margin information to complete at least two FOCs. Setting <code>logit.nests</code>‘s ’constraint’ argument to FALSE causes the <code>calcSlopes</code> method to relax the constraint and calibrate a separate nesting parameter for each nest. Relaxing the constraint increases the number of parameters that must be estimated to <span class="math inline">\(n+H+1\)</span>, which means that users must furnish margin information sufficient to complete at least <span class="math inline">\(H+1\)</span> FOCs. Moreover, users must supply at least one margin per nest for each non-singleton nest. In other words, if nest <span class="math inline">\(h\in H\)</span> contains <span class="math inline">\(n_h&gt;1\)</span> products, then at least one product margin from nest <span class="math inline">\(h\)</span> must be supplied.</p>
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1" role="doc-endnote"><p>The Bertrand model assumes that while any firm can receive a portion of another firm’s profits (e.g.&nbsp;through owning a share of that firms’ assets), only one firm can set a product’s price.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p>No function in <code>antitrust</code> currently permits a hierarchy of nests. Singleton nests (nests containing only a single product) are technically permitted, but their nesting parameter is not identified and is therefore normalized to 1.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+      <div class="nav-footer-center">Copyright 2022, Eviatar Guttman</div>
+  </div>
+</footer>
+
+
+
+</body></html>

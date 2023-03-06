@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Eviatar Guttman - What we did in the mortgage research</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Eviatar Guttman</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="./mortgage.html" aria-current="page">Mortgage research</a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-merger-simulation" role="button" data-bs-toggle="dropdown" aria-expanded="false">Merger Simulation</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-merger-simulation">    
+        <li>
+    <a class="dropdown-item" href="./merger_sim_intro.html">
+ <span class="dropdown-text">Introduction</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./Multinomial_Logit.html">
+ <span class="dropdown-text">multinomial logit</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./nested.html">
+ <span class="dropdown-text">Nested Logit</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#background" id="toc-background" class="nav-link active" data-scroll-target="#background">Background</a></li>
+  <li><a href="#the-algorithm" id="toc-the-algorithm" class="nav-link" data-scroll-target="#the-algorithm">The algorithm</a></li>
+  <li><a href="#load-packages-and-data" id="toc-load-packages-and-data" class="nav-link" data-scroll-target="#load-packages-and-data">Load packages and data</a></li>
+  <li><a href="#regression-formula" id="toc-regression-formula" class="nav-link" data-scroll-target="#regression-formula">Regression formula</a></li>
+  <li><a href="#quantile-regressions" id="toc-quantile-regressions" class="nav-link" data-scroll-target="#quantile-regressions">Quantile regressions</a></li>
+  <li><a href="#predictions" id="toc-predictions" class="nav-link" data-scroll-target="#predictions">Predictions</a></li>
+  <li><a href="#simulation" id="toc-simulation" class="nav-link" data-scroll-target="#simulation">Simulation</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">What we did in the mortgage research</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<section id="background" class="level1">
+<h1>Background</h1>
+<p>This is a short explanation of the simulation implementation we did in the <a href="https://www.gov.il/he/departments/publications/reports/mortgagemarket-final">mortgage research</a>. For more information one can read the final report or the <a href="https://www.gov.il/he/departments/publications/reports/mortgagemarket-draft">drat with the annexes</a> .</p>
+<p>The data-base used for the mortgage research consisted of nearly all mortgage data documented by the 3 largest banks in Israel in the years 2015-2017. In addition, we had all official mortgage bids consumers received in those year from the entire banking system.</p>
+<p>It took me several month to build a data unified data-base from the 3 banks. The aim was to keep as much explanatory variables as possible so we can learn what determines the price consumers pay.</p>
+<p>As we learned the data, we observed substantial price dispersion between customers, even though we practically had everything the bank documented about the loan. Specifically, linear models presented varying residual dispersion between non-bidders (consumers that don’t get another bid from another bank) and bidders. In addition, our estimates of the effect of extra bid on the price consumer will pay seemed rather small. Our qualitative information about the market suggested that there are substantial <a href="https://en.wikipedia.org/wiki/Search_cost">search costs</a> consumers endure. We wanted to exemplify what should be the change in price in a friction-less environment when the customer gets more bids before purchase of a mortgage loan.</p>
+<p>As in <a href="https://www.aeaweb.org/articles?id=10.1257/aer.102.7.3249">Woodward &amp; Hall (2012)</a> we used <a href="https://en.wikipedia.org/wiki/Quantile_regression">quantile regression</a>’s estimates to reconstruct the predicted price distribution for every observation in the sample. In other words, we got a price distribution that match the borrower and the transaction characteristics.</p>
+</section>
+<section id="the-algorithm" class="level1">
+<h1>The algorithm</h1>
+<p>This example will replicate the core idea of the simulation.</p>
+<p>We will do 99 quantile regressions for each of the 3 banks data-sets. then, relying of the fact the data-sets are unified, for each observation we will predict the price over 297 regression models, 99 for each bank. This will allow a reconstruction of a predicted price distribution for each loan in each of the 3 banks.</p>
+<p>Once we have the price distributions for each loan two types of comparisons are possible:</p>
+<ol type="1">
+<li>We assume that a consumer’s quantile is predetermined. that is, the researcher has some unobservables which don’t exist in the data but the customer and the banks know the values of these unobservables. In this case, if a customer belongs to the 42nd quantlie, than we should compare the 42nd quantile between the 3 banks. To measure the expected savings from bidding between banks sums up to taking the minimum from each quantile of the 3 price distributions.</li>
+<li>More interesting to show in this document is the case where the customer’s quantiles are not determined but random. conditional on the customer and transaction’s characteristics she could be in quantile 42 in bank A, quantile 14 in bank B and quantile 75 in bank C. To simulate this process we need to draw a triplet of quantiles, one for each bank. If we draw enough triplets we can re-construct the predicted price distribution for this customer if she had bid only on bank, two banks or all three of them by taking the minimum price from each combination of the quantile triplets.</li>
+</ol>
+</section>
+<section id="load-packages-and-data" class="level1">
+<h1>Load packages and data</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>, <span class="at">digits =</span> <span class="dv">3</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># data  bases</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">'mortgage_data/data_1_raw_database_v2.Rdata'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We have 3 data frames, one for each bank, each has 50 columns. The data sets been unified so all explanatory variables have the same meaning, which means, when we take an observations and predict its price on another bank’s modes the results make sense.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "df_bank_A" "df_bank_B" "df_bank_C"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>(<span class="fu">ls</span>(), <span class="sc">~</span> <span class="fu">dim</span>(<span class="fu">get</span>(.)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[1] 25779    50
+
+[[2]]
+[1] 26958    50
+
+[[3]]
+[1] 44944    50</code></pre>
+</div>
+</div>
+</section>
+<section id="regression-formula" class="level1">
+<h1>Regression formula</h1>
+<p>Next, an example of regression formula. In the research, we has nearly 50 explanatory variables including many categorical variables such as fixed effects for time, asset types and the loan portfolio. To run this big quantile regression one needs large data-set, otherwise the regression model will not converge, especially in the corner quantliles - for instance quantiles below 5 and above 95 may not converge. One solution would be to give up on the corner quantiles and to be satisfied with incomplete distribution. Another solution is to simply the regression formula. A third options could by to use some kind of <a href="http://web.mit.edu/~r/current/arch/i386_linux26/lib/R/library/quantreg/html/rq.fit.lasso.html">Lasso Penalized Quantile Regression</a>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>reg_formula <span class="ot">&lt;-</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">formula</span>(<span class="st">"interest ~ Loan_to_Value + Purchase_Purpose +</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="st">  service_commission + asset_type + </span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="st">  log_loan_size + log_asset_value + log_disposable_income + </span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="st">  demographics +</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="st">  porfolio_fixed_effects + </span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="st">  amortization_periods +</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="st">  time_fixed_effect"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="quantile-regressions" class="level1">
+<h1>Quantile regressions</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>taus <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">99</span><span class="sc">/</span><span class="dv">100</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="fu">head</span>(taus), <span class="st">"...."</span>, <span class="fu">tail</span>(taus))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "0.01" "0.02" "0.03" "0.04" "0.05" "0.06" "...." "0.94" "0.95" "0.96"
+[11] "0.97" "0.98" "0.99"</code></pre>
+</div>
+</div>
+<p>Running 297 quantile regression is an <a href="https://en.wikipedia.org/wiki/Embarrassingly_parallel">Embarrassingly parallel</a> computing problem. Here we use the package <code>furrr</code> that implements parallel computing to the <code>purrr</code> map functions with <code>future</code> supported back-end. The change in syntax is just write <code>future_map()</code> instead of <code>map()</code> . The function <code>quantreg::rq</code> computes and creates the quantile regression model.<br>
+</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(quantreg) <span class="co"># a quantile regression package authord by Roger Koenker himself</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(furrr)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>future<span class="sc">::</span><span class="fu">plan</span>(multiprocess) <span class="co"># parallel processing</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>models_A <span class="ot">&lt;-</span> <span class="fu">future_map</span>(taus, <span class="sc">~</span> <span class="fu">rq</span>(reg_formula, <span class="at">tau =</span> .x, <span class="at">data =</span> df_bank_A, <span class="at">method =</span> <span class="st">'pfn'</span> ), <span class="at">.progress =</span> T )</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>models_B <span class="ot">&lt;-</span> <span class="fu">future_map</span>(taus, <span class="sc">~</span> <span class="fu">rq</span>(reg_formula, <span class="at">tau =</span> .x, <span class="at">data =</span> df_bank_B, <span class="at">method =</span> <span class="st">'pfn'</span> ), <span class="at">.progress =</span> T)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>models_C <span class="ot">&lt;-</span> <span class="fu">future_map</span>(taus, <span class="sc">~</span> <span class="fu">rq</span>(reg_formula, <span class="at">tau =</span> .x, <span class="at">data =</span> df_bank_C, <span class="at">method =</span> <span class="st">'pfn'</span> ), <span class="at">.progress =</span> T)</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>future<span class="sc">:::</span><span class="fu">ClusterRegistry</span>(<span class="st">"stop"</span>) <span class="co"># close workers. </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>For each bank we get 99 quantile regressions packed in a list object.</p>
+<p><img src="mortgage_data/models_list.PNG" class="img-fluid"></p>
+</section>
+<section id="predictions" class="level1">
+<h1>Predictions</h1>
+<p>In the mortgage research, we computed the simulation for each loan in the data. Then we reported summary statistics about the possible savings consumers could have had if they know or could bid more banks. For this example, a small data-set will suffice.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">'mortgage_data/data_3_for_predictions.RData'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>For each bank we run the predictions separately.<br>
+The next function computes the predictions for each list of models.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create predictions</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>f_predict <span class="ot">&lt;-</span> <span class="cf">function</span>(.models , .data, .bank){</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># run pfedictions for each of the 9 models</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  x1 <span class="ot">&lt;-</span> <span class="fu">map_dfc</span>(.models, <span class="sc">~</span> <span class="fu">predict</span>(.x, .data)) <span class="sc">%&gt;%</span> <span class="fu">rownames_to_column</span>(<span class="at">var =</span> <span class="st">"id"</span>) </span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># arrange the data into long format to use with ggplot</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  x2 <span class="ot">&lt;-</span> x1 <span class="sc">%&gt;%</span> <span class="fu">gather</span>( <span class="at">key =</span> <span class="st">"quantile"</span>, <span class="at">value =</span> <span class="st">"prediction"</span>, <span class="dv">2</span><span class="sc">:</span><span class="fu">ncol</span>(x))</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  x2 <span class="ot">&lt;-</span> x2 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">quantile =</span> <span class="fu">as.numeric</span>(<span class="fu">str_extract</span>(quantile, <span class="st">"</span><span class="sc">\\</span><span class="st">d+"</span>)),</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>                      <span class="at">bank =</span> .bank)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  x2</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>p_bank_A <span class="ot">&lt;-</span> <span class="fu">f_predict</span>(models_A, df_for_predictions, <span class="st">"A"</span>)</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>p_bank_B <span class="ot">&lt;-</span> <span class="fu">f_predict</span>(models_B, df_for_predictions, <span class="st">"B"</span>)</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>p_bank_C <span class="ot">&lt;-</span> <span class="fu">f_predict</span>(models_C, df_for_predictions, <span class="st">"C"</span>)</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="co"># bind  all predictions</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>p_banks <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(p_bank_A, p_bank_B, p_bank_C) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">id =</span> <span class="fu">as.numeric</span>(id))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Lets see what we got:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(p_banks <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(id))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 x 4
+     id quantile prediction bank 
+  &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt;
+1     1        1       2.45 A    
+2     1        2       2.55 A    
+3     1        3       2.57 A    
+4     1        4       2.60 A    
+5     1        5       2.59 A    
+6     1        6       2.58 A    </code></pre>
+</div>
+</div>
+<p>For each loan we get 297 rows with each predicted price.</p>
+<p>Lets look at the price distribution of a loan:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>p_banks <span class="sc">%&gt;%</span> <span class="fu">filter</span>(id <span class="sc">==</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> quantile, <span class="at">y =</span> prediction, <span class="at">color =</span> bank)) <span class="sc">+</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="mortgage_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Its interesting to see that the price variance in bank B is very large. If this customer would be in the lower percentiles he is better of at bank B, but as the percentiles increase he is better of at bank A. the the end of the percentile range, the lowest price is in bank C.</p>
+</section>
+<section id="simulation" class="level1">
+<h1>Simulation</h1>
+<p>As explained above in the algorithm section, its more interesting to assume that quentiles are not pre-determined but random. The next function draws random triplets of values <span class="math inline">\(\in [0, 99]\)</span> for chosen quantiles and matched them to the corresponding prices. Then, for each possible combination of those price values, the minimum price is chosen. For a given loan, 7 price distributions are constructed. 3 when she goes to only one bank - for each of the 3 banks, 3 more when she bids 2 banks: AB, AC, BC, and lastly when she bids all banks.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>f_simulation_dist_different_draw <span class="ot">&lt;-</span> <span class="cf">function</span>(id_number, p_data, <span class="at">n =</span> <span class="dv">1000</span>) {</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># draw random quantiles for each bank</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  r1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">simulation_n =</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span>n, <span class="dv">3</span>),</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">id =</span> id_number,</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">bank =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"A"</span>, n), <span class="fu">rep</span>(<span class="st">"B"</span>, n), <span class="fu">rep</span>(<span class="st">"C"</span>, n)), </span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">quantile =</span> <span class="fu">round</span>(<span class="fu">runif</span>(<span class="dv">3</span> <span class="sc">*</span> n, <span class="fl">0.01</span>, <span class="fl">0.99</span>) <span class="sc">*</span> <span class="dv">100</span>), <span class="at">stringsAsFactors =</span> F )</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a> <span class="co"># join predictions from the p_bank Rata </span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  r2 <span class="ot">&lt;-</span> <span class="fu">left_join</span>(r1, p_data ,<span class="at">by =</span> <span class="fu">c</span>(<span class="st">"id"</span>, <span class="st">"bank"</span>, <span class="st">"quantile"</span>) )</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># For each draw triplet we choose all combinations of 2 banks,</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># As if the customer got bids from two banks.</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># There are 3 options: A-B, A-C, B-C</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>  r3a <span class="ot">&lt;-</span> r2 <span class="sc">%&gt;%</span>  <span class="fu">select</span>(<span class="sc">-</span> quantile)</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># option 1</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>  r3b1 <span class="ot">&lt;-</span> r2 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(bank <span class="sc">!=</span> <span class="st">"C"</span>) <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(simulation_n) <span class="sc">%&gt;%</span></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">prediction =</span> <span class="fu">min</span>(prediction)) <span class="sc">%&gt;%</span></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">distinct</span>(simulation_n, id, prediction) <span class="sc">%&gt;%</span> <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">bank =</span> <span class="st">"A_B"</span>)</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>  <span class="co"># option 2</span></span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>  r3b2 <span class="ot">&lt;-</span> r2 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(bank <span class="sc">!=</span> <span class="st">"B"</span>) <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(simulation_n) <span class="sc">%&gt;%</span></span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">prediction =</span> <span class="fu">min</span>(prediction)) <span class="sc">%&gt;%</span></span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">distinct</span>(simulation_n, id, prediction) <span class="sc">%&gt;%</span> <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">bank =</span> <span class="st">"A_C"</span>)</span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>  <span class="co"># option 3</span></span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>  r3b3 <span class="ot">&lt;-</span> r2 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(bank <span class="sc">!=</span> <span class="st">"C"</span>) <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(simulation_n) <span class="sc">%&gt;%</span></span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">prediction =</span> <span class="fu">min</span>(prediction)) <span class="sc">%&gt;%</span></span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>    <span class="fu">distinct</span>(simulation_n, id, prediction) <span class="sc">%&gt;%</span> <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">bank =</span> <span class="st">"B_C"</span>)</span>
+<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 1 option for bidding in all three banks</span></span>
+<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a>  r3c <span class="ot">&lt;-</span> r2 <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(simulation_n) <span class="sc">%&gt;%</span></span>
+<span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">prediction =</span> <span class="fu">min</span>(prediction)) <span class="sc">%&gt;%</span></span>
+<span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a>    <span class="fu">distinct</span>(simulation_n, id, prediction) <span class="sc">%&gt;%</span> <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb15-40"><a href="#cb15-40" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">bank =</span> <span class="st">"all_3_banks"</span>)</span>
+<span id="cb15-41"><a href="#cb15-41" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb15-42"><a href="#cb15-42" aria-hidden="true" tabindex="-1"></a>  <span class="co"># bind everything together</span></span>
+<span id="cb15-43"><a href="#cb15-43" aria-hidden="true" tabindex="-1"></a>  r4 <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(r3a,r3b1, r3b2, r3b3, r3c)</span>
+<span id="cb15-44"><a href="#cb15-44" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb15-45"><a href="#cb15-45" aria-hidden="true" tabindex="-1"></a>  <span class="co"># a Dummy variable to choose from which bank the customer is</span></span>
+<span id="cb15-46"><a href="#cb15-46" aria-hidden="true" tabindex="-1"></a>  r4 <span class="ot">&lt;-</span> r4 <span class="sc">%&gt;%</span></span>
+<span id="cb15-47"><a href="#cb15-47" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">A =</span> <span class="fu">if_else</span>( bank <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"A_B"</span>, <span class="st">"A_C"</span>, <span class="st">"all_3_banks"</span>), <span class="dv">1</span>, <span class="dv">0</span>),</span>
+<span id="cb15-48"><a href="#cb15-48" aria-hidden="true" tabindex="-1"></a>           <span class="at">B =</span> <span class="fu">if_else</span>( bank <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"B"</span>, <span class="st">"A_B"</span>, <span class="st">"B_C"</span>, <span class="st">"all_3_banks"</span>), <span class="dv">1</span>, <span class="dv">0</span>),</span>
+<span id="cb15-49"><a href="#cb15-49" aria-hidden="true" tabindex="-1"></a>           <span class="at">C =</span> <span class="fu">if_else</span>( bank <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"C"</span>, <span class="st">"A_C"</span>, <span class="st">"B_C"</span>, <span class="st">"all_3_banks"</span>), <span class="dv">1</span>, <span class="dv">0</span>))</span>
+<span id="cb15-50"><a href="#cb15-50" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb15-51"><a href="#cb15-51" aria-hidden="true" tabindex="-1"></a>  r4</span>
+<span id="cb15-52"><a href="#cb15-52" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Lets simulate the price distributions for loan 10:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>customer_10 <span class="ot">&lt;-</span> <span class="fu">f_simulation_dist_different_draw</span>(<span class="at">id_number =</span> <span class="dv">10</span>,  p_banks)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>we got a data ready to plot:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(customer_10)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  simulation_n id bank prediction A B C
+1            1 10    A       3.53 1 0 0
+2            2 10    A       3.76 1 0 0
+3            3 10    A       3.45 1 0 0
+4            4 10    A       3.82 1 0 0
+5            5 10    A       2.99 1 0 0
+6            6 10    A       3.19 1 0 0</code></pre>
+</div>
+</div>
+<p>is not easy to look at 7 distributions simultaneously as well as it doesn’t really make sense. If the customer originally was from bank C, than we would like to see what she could have gaind from bidding banks A and B. The <code>f_plot</code> function plots 4 distributions from a certain bank costomer’s perspective.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>f_plot <span class="ot">&lt;-</span> <span class="cf">function</span>(data, bank_choice){</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(.data[[bank_choice]] <span class="sc">==</span> <span class="dv">1</span>)  <span class="sc">%&gt;%</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> prediction, <span class="at">color =</span> bank, <span class="at">fill =</span> bank)) <span class="sc">+</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.1</span>) </span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">f_plot</span>(customer_10, <span class="st">'C'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="mortgage_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>we can also look at it from every angle</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>p4 <span class="ot">&lt;-</span> <span class="fu">f_plot</span>(customer_10, <span class="st">"A"</span>) <span class="sc">+</span> <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="fl">2.2</span>, <span class="fl">3.6</span>))</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>p5 <span class="ot">&lt;-</span> <span class="fu">f_plot</span>(customer_10, <span class="st">"B"</span>)<span class="sc">+</span> <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="fl">2.2</span>, <span class="fl">3.6</span>))</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>p6 <span class="ot">&lt;-</span> <span class="fu">f_plot</span>(customer_10, <span class="st">"C"</span>)<span class="sc">+</span> <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="fl">2.2</span>, <span class="fl">3.6</span>))</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>p4 <span class="sc">/</span> p5 <span class="sc">/</span> p6</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="mortgage_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+      <div class="nav-footer-center">Copyright 2022, Eviatar Guttman</div>
+  </div>
+</footer>
+
+
+
+</body></html>

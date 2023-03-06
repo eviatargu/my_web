@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Eviatar Guttman - Nested Logit</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Eviatar Guttman</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./mortgage.html">Mortgage research</a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-merger-simulation" role="button" data-bs-toggle="dropdown" aria-expanded="false">Merger Simulation</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-merger-simulation">    
+        <li>
+    <a class="dropdown-item" href="./merger_sim_intro.html">
+ <span class="dropdown-text">Introduction</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./Multinomial_Logit.html">
+ <span class="dropdown-text">multinomial logit</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./nested.html">
+ <span class="dropdown-text">Nested Logit</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">1. Introduction</a></li>
+  <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions">2. Functions</a>
+  <ul class="collapse">
+  <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link" data-scroll-target="#data-preparation">2.1. Data preparation</a></li>
+  <li><a href="#derivative-matrix" id="toc-derivative-matrix" class="nav-link" data-scroll-target="#derivative-matrix">2.2. Derivative matrix</a></li>
+  <li><a href="#pre-merger-conditions" id="toc-pre-merger-conditions" class="nav-link" data-scroll-target="#pre-merger-conditions">2.3. Pre-merger conditions</a></li>
+  <li><a href="#simulate-the-merger" id="toc-simulate-the-merger" class="nav-link" data-scroll-target="#simulate-the-merger">2.4. Simulate the merger</a>
+  <ul class="collapse">
+  <li><a href="#a.-nested-logit-demand-function" id="toc-a.-nested-logit-demand-function" class="nav-link" data-scroll-target="#a.-nested-logit-demand-function">2.4a. Nested logit Demand function</a></li>
+  <li><a href="#b.-fixed-point-iteration" id="toc-b.-fixed-point-iteration" class="nav-link" data-scroll-target="#b.-fixed-point-iteration">2.4b. Fixed point iteration</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#simulation" id="toc-simulation" class="nav-link" data-scroll-target="#simulation">3. Simulation</a>
+  <ul class="collapse">
+  <li><a href="#build-toy-data" id="toc-build-toy-data" class="nav-link" data-scroll-target="#build-toy-data">3.1 Build toy data</a></li>
+  <li><a href="#assume-regression-results" id="toc-assume-regression-results" class="nav-link" data-scroll-target="#assume-regression-results">3.2. Assume regression results</a></li>
+  <li><a href="#checking-derivatives" id="toc-checking-derivatives" class="nav-link" data-scroll-target="#checking-derivatives">3.3. Checking Derivatives</a></li>
+  <li><a href="#pre-merger-conditions-1" id="toc-pre-merger-conditions-1" class="nav-link" data-scroll-target="#pre-merger-conditions-1">3.4. Pre-merger conditions</a></li>
+  <li><a href="#check-the-demand-system" id="toc-check-the-demand-system" class="nav-link" data-scroll-target="#check-the-demand-system">3.5. Check the demand system</a></li>
+  <li><a href="#simulate-the-merger-1" id="toc-simulate-the-merger-1" class="nav-link" data-scroll-target="#simulate-the-merger-1">3.6. Simulate the merger</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Nested Logit</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen =</span> <span class="dv">999</span>, <span class="at">digits =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="introduction" class="level1">
+<h1>1. Introduction</h1>
+<p>In the previous document we saw a simplified example of merger simulation with multinomial logit. The next example is a step up in complexity. We’ll replace the model to a One Level Nested Logit. this model allows somewhat more realistic substitution patterns between products. In addition, this document will present the code warped up in functions that take care of several stages of the process.</p>
+<p>To perform the simulation we’ll go thorough 4 stages:</p>
+<ol type="1">
+<li>Prepare the data</li>
+<li>Calculate derivative matrix for the One-level nested logit demand system based on Price, market shares, Alpha and Sigma.</li>
+<li>Solve a system of equations that characterize the first order condition of the assumed supply side - Bertrand competition with differentiated products.</li>
+<li>Calculate a post merger new equilibrium based on post merger system of equations.</li>
+</ol>
+<p>We’ll present five functions that perform each of those steps and briefly review some key points.</p>
+</section>
+<section id="functions" class="level1">
+<h1>2. Functions</h1>
+<section id="data-preparation" class="level2">
+<h2 class="anchored" data-anchor-id="data-preparation">2.1. Data preparation</h2>
+<p>Prepare data set - <code>f1_init_calibration</code> creates a new data frame in the global environment with necessary variables for the simulation.<br>
+The new data frame’s name is <code>calibration data</code>.</p>
+<p>When calling the function all arguments must be specified:</p>
+<p>(1) data frame that includes the columns listed next. (2) <code>p</code>: product prices. (3) <code>q</code>: quantities sold for each product. (4) <code>firm</code>: the firm that owns the product. (5) <code>nest</code>: the group of products the product belongs to according to the model specified the the researcher. (6) <code>m_size</code>: The market size assumed by the researcher. (The choice of market size actually determines the size of the outside option. This choice has a decisive effect on the results of the simulation, but this subject is beyond the scope of this document). (7) <code>buyer</code>: The acquirer firm. (8) <code>seller</code>: the purchased firm.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>f1_init_calibration <span class="ot">&lt;-</span> <span class="cf">function</span>(data, p, q, firm, nest, m_size, buyer, seller){</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rename</span>(<span class="at">p =</span> {{p}}, <span class="at">q =</span> {{q}},<span class="at">firm =</span> {{firm}}, <span class="at">nest =</span> {{nest}}, <span class="at">m_size =</span> {{m_size}})</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  nest_mat <span class="ot">&lt;&lt;-</span> <span class="fu">outer</span>(data<span class="sc">$</span>nest, data<span class="sc">$</span>nest, <span class="at">FUN =</span> <span class="st">"=="</span>) <span class="sc">*</span> <span class="dv">1</span> <span class="co"># nest matrix</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  calibration_data <span class="ot">&lt;&lt;-</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    data <span class="sc">%&gt;%</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(p, q, firm, nest, m_size) <span class="sc">%&gt;%</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">p =</span> <span class="fu">as.numeric</span>(p),</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">q =</span> <span class="fu">as.numeric</span>(q),</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>      <span class="at">s =</span> q <span class="sc">/</span> m_size,                   <span class="co"># product market share </span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>      <span class="at">s_0 =</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">sum</span>(s),                 <span class="co"># outside option market share</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>      <span class="at">s_g =</span> <span class="fu">as.numeric</span>(nest_mat <span class="sc">%*%</span> s), <span class="co"># share of each nest</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">s_jg =</span> s <span class="sc">/</span> s_g,                   <span class="co"># share of product j in nest g</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">firm_post =</span> <span class="fu">if_else</span>(firm <span class="sc">==</span> {{seller}}, {{buyer}}, firm),</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span> <span class="fu">na.omit</span>()</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="derivative-matrix" class="level2">
+<h2 class="anchored" data-anchor-id="derivative-matrix">2.2. Derivative matrix</h2>
+<p><code>f2_derivatives</code> builds and returns the derivative matrix from the shares, alpha and sigma.<br>
+In one level nested-logit there are 3 types of derivatives:<br>
+(1) Own derivative (which should be all negative -&gt; demand goes down as price goes up)</p>
+<p>(2) cross derivative for products in the same nest.</p>
+<p>(3) cross derivative for products in a different nest. (These are the same as the cross derivatives in the Multinomial Logit model)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>f2_derivatives <span class="ot">&lt;-</span> <span class="cf">function</span>(shares, nest_shares, alpha, sigma){</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># preparations</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  s     <span class="ot">&lt;-</span> shares</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  s_jg  <span class="ot">&lt;-</span> nest_shares</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  n     <span class="ot">&lt;-</span> <span class="fu">length</span>(s)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  alpha <span class="ot">&lt;-</span> <span class="sc">-</span> <span class="fu">abs</span>(alpha) <span class="co"># to avoid confusion. fix the sign of alpha</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># derivatives</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  cross_different  <span class="ot">&lt;-</span> <span class="sc">-</span> alpha <span class="sc">*</span> s <span class="sc">%o%</span> s <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> nest_mat)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  cross_same <span class="ot">&lt;-</span> </span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="sc">-</span> alpha <span class="sc">*</span> (sigma <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">-</span> sigma) <span class="sc">*</span> s_jg <span class="sc">+</span> s) <span class="sc">%o%</span> s <span class="sc">*</span> nest_mat <span class="sc">*</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">diag</span>(<span class="at">x =</span> <span class="dv">1</span>,<span class="at">nrow =</span> n))</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  own <span class="ot">&lt;-</span> alpha <span class="sc">*</span> s <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">/</span> (<span class="dv">1</span><span class="sc">-</span>sigma) <span class="sc">-</span> sigma <span class="sc">/</span> (<span class="dv">1</span><span class="sc">-</span>sigma) <span class="sc">*</span> s_jg <span class="sc">-</span> s)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># warp it in the matrix</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  derivatives <span class="ot">&lt;-</span> cross_different <span class="sc">+</span> cross_same <span class="sc">+</span> <span class="fu">diag</span>(own)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  derivatives</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="pre-merger-conditions" class="level2">
+<h2 class="anchored" data-anchor-id="pre-merger-conditions">2.3. Pre-merger conditions</h2>
+<p><code>f3_pre_merger_conditions</code> gets as inputs the <code>calibration_data</code> we created in the global environment, a <code>derivatives</code> matrix and the assumed <span class="math inline">\(sigma\)</span>, the parameter for correlation between products in the same nest.</p>
+<p><code>f3_pre_merger_conditions</code> solves the first order condition of the equation system, and calculates several supplemented variables:<br>
+(1) Profit margins and (2) Lerner index to check profitability, the (3) Delta which is the mean utility the consumer has with the prevailing prices and a (4) FOC condition to see if the iteration process that will come next converges to zero.<br>
+The new variables are added the the <code>calibration_data</code> in the global environment.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>f3_pre_merger_conditions <span class="ot">&lt;-</span> <span class="cf">function</span>(c_data, derivatives, sigma){</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  theta <span class="ot">&lt;-</span> <span class="fu">outer</span>(c_data<span class="sc">$</span>firm, c_data<span class="sc">$</span>firm, <span class="at">FUN =</span> <span class="st">"=="</span>) <span class="sc">*</span> <span class="dv">1</span> <span class="co"># ownership matrix</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  s <span class="ot">&lt;-</span> c_data<span class="sc">$</span>s</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  p <span class="ot">&lt;-</span> c_data<span class="sc">$</span>p</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># system solution for marginal costs  </span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  c_data<span class="sc">$</span>mc <span class="ot">&lt;-</span> <span class="fu">solve</span>(derivatives <span class="sc">*</span> theta) <span class="sc">%*%</span> s <span class="sc">+</span> p </span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  c_data <span class="ot">&lt;-</span> c_data <span class="sc">%&gt;%</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">margin =</span> p <span class="sc">-</span> mc,</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>           <span class="at">lerner_index =</span> (p <span class="sc">-</span> mc) <span class="sc">/</span> p,</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>           <span class="at">FOC =</span> <span class="fu">as.vector</span>(s <span class="sc">+</span> (theta <span class="sc">*</span> derivatives) <span class="sc">%*%</span> (p <span class="sc">-</span> mc)),</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>           <span class="at">delta =</span>  <span class="fu">log</span>(s <span class="sc">/</span> s_0)  <span class="sc">-</span> sigma <span class="sc">*</span> <span class="fu">log</span>(s_jg)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>           )</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  calibration_data <span class="ot">&lt;&lt;-</span> c_data</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="simulate-the-merger" class="level2">
+<h2 class="anchored" data-anchor-id="simulate-the-merger">2.4. Simulate the merger</h2>
+<section id="a.-nested-logit-demand-function" class="level3">
+<h3 class="anchored" data-anchor-id="a.-nested-logit-demand-function">2.4a. Nested logit Demand function</h3>
+<p>In the process of looking for a new equilibrium after the merger, we need to use the consumers demand function. Every time the prices change, the mean utility of the consumer changes, hence the quantity demand will change. <code>f5_demand</code> is the demand function. It calculates the market shares that will prevail given a vector of prices. Its arguments are <code>delta</code>- the mean utility from consumers have for each product, and <span class="math inline">\(sigma\)</span> - the in-nest correlation parameter according to the nested logit model.<br>
+The user need not operate this function. It will be called from within <code>f4_fixed_point</code> that will calculate the new equilibrium.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>f5_demand <span class="ot">&lt;-</span> <span class="cf">function</span>(delta, sigma){</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># demand function</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  exponent    <span class="ot">&lt;-</span> <span class="fu">exp</span>(delta <span class="sc">/</span>(<span class="dv">1</span><span class="sc">-</span>sigma))</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  D_g         <span class="ot">&lt;-</span> <span class="fu">unique</span>(nest_mat, <span class="at">MARGIN =</span> <span class="dv">1</span>) <span class="sc">%*%</span>  exponent</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  denominator <span class="ot">&lt;-</span> D_g <span class="sc">^</span> sigma <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">+</span> <span class="fu">sum</span>(D_g<span class="sc">^</span>(<span class="dv">1</span><span class="sc">-</span>sigma)))</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  s_t         <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(exponent <span class="sc">*</span> <span class="fu">unique</span>(nest_mat, <span class="at">MARGIN =</span> <span class="dv">2</span>) <span class="sc">%*%</span> (<span class="dv">1</span><span class="sc">/</span> <span class="fu">as.vector</span>(denominator)))</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># nest shares</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  s_g  <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(nest_mat <span class="sc">%*%</span> s_t)  <span class="co"># nest market share</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  s_jg <span class="ot">&lt;-</span> s_t <span class="sc">/</span> s_g                     <span class="co"># share within the nest</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(<span class="at">s_t =</span> s_t, <span class="at">s_jg_t =</span> s_jg, <span class="at">delta_t =</span> delta, <span class="at">n =</span> <span class="fu">length</span>(s_t))</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="b.-fixed-point-iteration" class="level3">
+<h3 class="anchored" data-anchor-id="b.-fixed-point-iteration">2.4b. Fixed point iteration</h3>
+<p><code>f4_fixed_point</code> calculates the new equilibrium with a fixed point iteration algorithm.<br>
+It uses the <code>f5_demand</code> <code>f2_derivatives</code> and solves the FOC iteratively until solution is reached or until the maximum number of iterations is reached.<br>
+The user has control over the maximum number of iterations and the tolarance desired for convergence.<br>
+we shall expand about the argument <code>convergence_factor</code> later.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>f4_fixed_point <span class="ot">&lt;-</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">function</span>(data, alpha, sigma, <span class="at">max_iter =</span> <span class="dv">100</span>,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">convergence_factor =</span> <span class="dv">1</span>, <span class="at">tolerance =</span> <span class="fl">1e-3</span>){</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    theta_post <span class="ot">&lt;-</span> <span class="fu">outer</span>(data<span class="sc">$</span>firm_post, data<span class="sc">$</span>firm_post, <span class="at">FUN =</span> <span class="st">"=="</span>) <span class="sc">*</span> <span class="dv">1</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    s_in       <span class="ot">&lt;-</span> data<span class="sc">$</span>s</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    p          <span class="ot">&lt;-</span> data<span class="sc">$</span>p</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    mc         <span class="ot">&lt;-</span> data<span class="sc">$</span>mc</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    delta      <span class="ot">&lt;-</span> data<span class="sc">$</span>delta</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    der_new    <span class="ot">&lt;-</span> <span class="fu">f2_derivatives</span>(calibration_data<span class="sc">$</span>s, calibration_data<span class="sc">$</span>s_jg, alpha, sigma)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    log         <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">nrow =</span> max_iter, <span class="at">ncol =</span> <span class="fu">length</span>(s_in) <span class="sc">+</span> <span class="dv">2</span>)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    i          <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    s_d_norm   <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span>(i <span class="sc">&lt;</span> max_iter <span class="sc">&amp;</span> s_d_norm <span class="sc">&gt;</span> tolerance){</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>      i         <span class="ot">&lt;-</span> i <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>      p_new     <span class="ot">&lt;-</span> mc <span class="sc">-</span> (<span class="fu">solve</span>(der_new <span class="sc">*</span> theta_post)) <span class="sc">%*%</span> s_in  <span class="co"># new price</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>      delta_new <span class="ot">&lt;-</span> delta <span class="sc">-</span> <span class="fu">abs</span>(alpha) <span class="sc">*</span> <span class="fu">as.vector</span>((p_new <span class="sc">-</span> p)<span class="sc">/</span> convergence_factor)</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>      s_new     <span class="ot">&lt;-</span> <span class="fu">f5_demand</span>(delta_new, sigma)</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>      der_new   <span class="ot">&lt;-</span> <span class="fu">f2_derivatives</span>(s_new<span class="sc">$</span>s_t, s_new<span class="sc">$</span>s_jg_t, alpha, sigma)</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>      s_d_norm  <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">sum</span>((s_in <span class="sc">-</span> s_new[[<span class="dv">1</span>]]) <span class="sc">^</span> <span class="dv">2</span>)) <span class="co"># measure convergence</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>      s_in      <span class="ot">&lt;-</span> s_new[[<span class="dv">1</span>]]    <span class="co"># new price vector to feed in</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>      log[i,]    <span class="ot">&lt;-</span> <span class="fu">c</span>(p_new, <span class="at">norm =</span> s_d_norm,<span class="at">iteration =</span> i) <span class="co"># results</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>    log       <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(log) <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>()</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">names</span>(log)<span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">paste</span>(<span class="st">"p"</span>, <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(s_in), <span class="at">sep =</span> <span class="st">"_"</span>), <span class="st">"norm"</span>, <span class="st">"iter"</span>)</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>    simulation_log <span class="ot">&lt;&lt;-</span> log</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>    tail     <span class="ot">&lt;-</span> <span class="fu">tail</span>(log,<span class="dv">1</span>)</span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>    data<span class="sc">$</span>new_prices <span class="ot">&lt;-</span> tail <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">"p_"</span>)) <span class="sc">%&gt;%</span> <span class="fu">t</span>() <span class="sc">%&gt;%</span> <span class="fu">as.vector</span>()</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>    data<span class="sc">$</span>iterations <span class="ot">&lt;-</span> tail <span class="sc">%&gt;%</span> <span class="fu">select</span>(iter) <span class="sc">%&gt;%</span> <span class="fu">pull</span>()</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>    data<span class="sc">$</span>norm       <span class="ot">&lt;-</span> tail <span class="sc">%&gt;%</span> <span class="fu">select</span>(norm) <span class="sc">%&gt;%</span> <span class="fu">pull</span>()</span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>    data<span class="sc">$</span>new_shares <span class="ot">&lt;-</span> s_new[[<span class="dv">1</span>]]</span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>    calibration_results <span class="ot">&lt;&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>      <span class="fu">select</span>(firm, nest, p, new_prices, s, new_shares,</span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>             iterations, norm, q, m_size)</span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>  }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="simulation" class="level1">
+<h1>3. Simulation</h1>
+<section id="build-toy-data" class="level2">
+<h2 class="anchored" data-anchor-id="build-toy-data">3.1 Build toy data</h2>
+<p>Its about time to see it all in action.</p>
+<p>we’ll create a toy data of 6 products owned by 3 firms, divided into 2 nests.<br>
+market size will be 100.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">company  =</span> <span class="fu">c</span>(<span class="st">"a"</span>,     <span class="st">"a"</span>,     <span class="st">"b"</span>,    <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"c"</span>),</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">nests    =</span> <span class="fu">c</span>(<span class="st">"pre"</span>,   <span class="st">"pre"</span>,   <span class="st">"pre"</span>,   <span class="dv">2</span>,   <span class="dv">2</span>,   <span class="dv">2</span>),</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">quantity =</span> <span class="fu">c</span>( <span class="dv">20</span>,      <span class="dv">5</span>,       <span class="dv">10</span>,     <span class="dv">5</span>,   <span class="dv">10</span>,  <span class="dv">25</span>),</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">price    =</span> <span class="fu">c</span>( <span class="dv">60</span>,      <span class="dv">40</span>,      <span class="dv">50</span>,     <span class="dv">45</span>,  <span class="dv">30</span>,  <span class="dv">30</span>),</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">m_size   =</span> <span class="dv">100</span>,</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">not_needed_variable =</span> <span class="st">"junk"</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  company nests quantity price m_size not_needed_variable
+1       a   pre       20    60    100                junk
+2       a   pre        5    40    100                junk
+3       b   pre       10    50    100                junk
+4       b     2        5    45    100                junk
+5       c     2       10    30    100                junk
+6       c     2       25    30    100                junk</code></pre>
+</div>
+</div>
+<p>We can prepare the data for simulation using <code>f1_init_calibration</code>:<br>
+Note that all argument are needed for the function to know which variable is which:<br>
+prices, quantities, firm, nest, market size, buyer and seller.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">f1_init_calibration</span>(df, <span class="at">p =</span> price, <span class="at">q =</span> quantity, <span class="at">firm =</span> company, <span class="at">nest =</span> nests,</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">m_size =</span> m_size, <span class="at">buyer =</span> <span class="st">'a'</span>, <span class="at">seller =</span> <span class="st">'b'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A new df named<code>calibration_data</code> was created in the global environment:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>calibration_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   p  q firm nest m_size    s  s_0  s_g  s_jg firm_post n
+1 60 20    a  pre    100 0.20 0.25 0.35 0.571         a 6
+2 40  5    a  pre    100 0.05 0.25 0.35 0.143         a 6
+3 50 10    b  pre    100 0.10 0.25 0.35 0.286         a 6
+4 45  5    b    2    100 0.05 0.25 0.40 0.125         a 6
+5 30 10    c    2    100 0.10 0.25 0.40 0.250         c 6
+6 30 25    c    2    100 0.25 0.25 0.40 0.625         c 6</code></pre>
+</div>
+</div>
+</section>
+<section id="assume-regression-results" class="level2">
+<h2 class="anchored" data-anchor-id="assume-regression-results">3.2. Assume regression results</h2>
+<p>If one does a Nested Logit demand estimation successfully , one has the right <span class="math inline">\(sigma\)</span> and <span class="math inline">\(alpha\)</span> to put into the simulation. here, we assume those parameters to be:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>sigma0<span class="fl">.5</span> <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>alpha0<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fl">0.1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This does not have to be an arbitrary assumption, rather it can be based on the knowledge we have about the market.</p>
+</section>
+<section id="checking-derivatives" class="level2">
+<h2 class="anchored" data-anchor-id="checking-derivatives">3.3. Checking Derivatives</h2>
+<p>Lets see how the derivative matrix is like for this toy data.<br>
+In actual simulation this function is being called from <code>f4_fixed_point</code>, so there is no need to call it.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>der <span class="ot">&lt;-</span> <span class="fu">f2_derivatives</span>(calibration_data<span class="sc">$</span>s, calibration_data<span class="sc">$</span>s_jg, alpha0<span class="fl">.1</span>, sigma0<span class="fl">.5</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>der</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         [,1]     [,2]     [,3]     [,4]     [,5]     [,6]
+[1,] -0.02457  0.00386  0.00771  0.00100  0.00200  0.00500
+[2,]  0.00386 -0.00904  0.00193  0.00025  0.00050  0.00125
+[3,]  0.00771  0.00193 -0.01614  0.00050  0.00100  0.00250
+[4,]  0.00100  0.00025  0.00050 -0.00913  0.00175  0.00437
+[5,]  0.00200  0.00050  0.00100  0.00175 -0.01650  0.00875
+[6,]  0.00500  0.00125  0.00250  0.00438  0.00875 -0.02813</code></pre>
+</div>
+</div>
+<p>Glimpsing on it, it look like the own derivative in the diagonal is negative and the rest is positive.</p>
+</section>
+<section id="pre-merger-conditions-1" class="level2">
+<h2 class="anchored" data-anchor-id="pre-merger-conditions-1">3.4. Pre-merger conditions</h2>
+<p>Now we calculate the marginal costs of the firms. all new variables are added to the <code>calibration_data</code> .</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">f3_pre_merger_conditions</span>(calibration_data, der, sigma0<span class="fl">.5</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>calibration_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   p  q firm nest m_size    s  s_0  s_g  s_jg firm_post n   mc margin
+1 60 20    a  pre    100 0.20 0.25 0.35 0.571         a 6 50.3   9.66
+2 40  5    a  pre    100 0.05 0.25 0.35 0.143         a 6 30.3   9.66
+3 50 10    b  pre    100 0.10 0.25 0.35 0.286         a 6 43.6   6.38
+4 45  5    b    2    100 0.05 0.25 0.40 0.125         a 6 39.2   5.83
+5 30 10    c    2    100 0.10 0.25 0.40 0.250         c 6 17.1  12.90
+6 30 25    c    2    100 0.25 0.25 0.40 0.625         c 6 17.1  12.90
+  lerner_index                    FOC   delta
+1        0.161  0.0000000000000000000  0.0567
+2        0.241  0.0000000000000000000 -0.6365
+3        0.128 -0.0000000000000000278 -0.2899
+4        0.130  0.0000000000000000208 -0.5697
+5        0.430  0.0000000000000000000 -0.2231
+6        0.430  0.0000000000000000000  0.2350</code></pre>
+</div>
+</div>
+</section>
+<section id="check-the-demand-system" class="level2">
+<h2 class="anchored" data-anchor-id="check-the-demand-system">3.5. Check the demand system</h2>
+<p>For the sake of presentation, lets see that the demand function works correctly.<br>
+Feeding the delta’s consumers had, we should get the same market shares we assumed.<br>
+Every time the price will change, the delta will change and so the shares.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">f5_demand</span>(calibration_data<span class="sc">$</span>delta, sigma0<span class="fl">.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   s_t s_jg_t delta_t n
+1 0.20  0.571  0.0567 6
+2 0.05  0.143 -0.6365 6
+3 0.10  0.286 -0.2899 6
+4 0.05  0.125 -0.5697 6
+5 0.10  0.250 -0.2231 6
+6 0.25  0.625  0.2350 6</code></pre>
+</div>
+</div>
+<p>We got the same market shares we chose when we first built our toy data, so its OK.</p>
+</section>
+<section id="simulate-the-merger-1" class="level2">
+<h2 class="anchored" data-anchor-id="simulate-the-merger-1">3.6. Simulate the merger</h2>
+<p>At last, we can simulate the merger.<br>
+Using the fixed point iteration, we get a new df named <code>calibration_results</code> with the results of the simulation.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">f4_fixed_point</span>(calibration_data, alpha0<span class="fl">.1</span>, sigma0<span class="fl">.5</span>, <span class="at">convergence_factor =</span> <span class="fl">1.2</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>calibration_results</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  firm nest  p new_prices    s new_shares iterations     norm  q m_size
+1    a  pre 60       64.5 0.20     0.1736         89 0.000972 20    100
+2    a  pre 40       44.5 0.05     0.0434         89 0.000972  5    100
+3    b  pre 50       57.8 0.10     0.0502         89 0.000972 10    100
+4    b    2 45       46.7 0.05     0.0486         89 0.000972  5    100
+5    c    2 30       30.9 0.10     0.1109         89 0.000972 10    100
+6    c    2 30       30.9 0.25     0.2772         89 0.000972 25    100</code></pre>
+</div>
+</div>
+<p><code>calibration_results</code> gives the new prices and new shares, reports how many iterations were needed to converge to the tolerance of 1/1000 and reports the norm of the change in prices in the last iteration.</p>
+<p>We can watch the entire process in the <code>simulation_log</code> object created in the global environment.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rbind</span>(<span class="fu">head</span>(simulation_log),<span class="fu">tail</span>(simulation_log))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    p_1  p_2  p_3  p_4  p_5  p_6     norm iter
+1  66.4 46.4 59.7 47.7 30.0 30.0 0.098581    1
+2  63.7 43.7 57.0 46.1 32.4 32.4 0.082170    2
+3  65.2 45.2 58.5 47.2 29.5 29.5 0.077062    3
+4  64.0 44.0 57.2 46.3 32.4 32.4 0.073149    4
+5  65.1 45.1 58.3 47.1 29.6 29.6 0.069658    5
+6  64.0 44.0 57.3 46.3 32.2 32.2 0.066111    6
+84 64.5 44.5 57.8 46.7 30.9 30.9 0.001254   84
+85 64.5 44.5 57.8 46.7 30.9 30.9 0.001191   85
+86 64.5 44.5 57.8 46.7 30.9 30.9 0.001132   86
+87 64.5 44.5 57.8 46.7 30.9 30.9 0.001076   87
+88 64.5 44.5 57.8 46.7 30.9 30.9 0.001023   88
+89 64.5 44.5 57.8 46.7 30.9 30.9 0.000972   89</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>simulation_log <span class="sc">%&gt;%</span> <span class="fu">select</span>( <span class="sc">-</span> norm) <span class="sc">%&gt;%</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> iter, <span class="at">y =</span> value, <span class="at">color =</span> name)) <span class="sc">+</span> <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="nested_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Note that when we called <code>f4_fixed_point</code> we used a <code>convergenc_factor</code> of 1.2.<br>
+As it happens, this data consists of only 6 observations and the fixed point algorithm doesn’t converge naturally with a <code>convergence_factor</code> of 1.<br>
+At best practice, one should use a <code>convergence_factor</code> of 1, and only if there’s a problem to choose a <code>convergence_factor</code> &gt; 1.<br>
+Lets see what happens if we chose <code>convergence_factor</code> = 1.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">f4_fixed_point</span>(calibration_data, alpha0<span class="fl">.1</span>, sigma0<span class="fl">.5</span>, <span class="at">convergence_factor =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Prices and shares are constantly jumping between two points.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>simulation_log <span class="sc">%&gt;%</span> <span class="fu">select</span>( <span class="sc">-</span> norm) <span class="sc">%&gt;%</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> iter, <span class="at">y =</span> value, <span class="at">color =</span> name)) <span class="sc">+</span> <span class="fu">geom_line</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="nested_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><code>calibration_resaults</code> also tells us that the <code>norm</code> is far far away from zero:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>calibration_results</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  firm nest  p new_prices    s new_shares iterations  norm  q m_size
+1    a  pre 60       60.9 0.20    0.28013        100 0.637 20    100
+2    a  pre 40       40.9 0.05    0.07003        100 0.637  5    100
+3    b  pre 50       54.2 0.10    0.07268        100 0.637 10    100
+4    b    2 45       44.5 0.05    0.20641        100 0.637  5    100
+5    c    2 30       52.8 0.10    0.00387        100 0.637 10    100
+6    c    2 30       52.8 0.25    0.00967        100 0.637 25    100</code></pre>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+      <div class="nav-footer-center">Copyright 2022, Eviatar Guttman</div>
+  </div>
+</footer>
+
+
+
+</body></html>
