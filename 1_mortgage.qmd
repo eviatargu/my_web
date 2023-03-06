@@ -7,7 +7,7 @@ editor_options:
 
 # Background
 
-This is a short explanation of the simulation implementation we did in the research [Information problems in the mortgage market in Israel: price dispersion and search](https://www.gov.il/he/departments/publications/reports/mortgagemarket-final). For more information one can read the final report or dive even more into technical details published in the [draft with the annexes](https://www.gov.il/he/departments/publications/reports/mortgagemarket-draft). sadly, the report was published solely in Hebrew, though there is an extended abstract (8 pages long) in [this link](mortgage_data/Information%20Asymmetry%20and%20the%20Gains%20from%20Shopping%20Evidence%20from%20the%20Israeli%20Mortgage%20Market.pdf)
+This is a short explanation of the simulation implementation we did in the research [Information problems in the mortgage market in Israel: price dispersion and search](https://www.gov.il/he/departments/publications/reports/mortgagemarket-final). For more information one can read the final report or dive even more into technical details published in the [draft with the annexes](https://www.gov.il/he/departments/publications/reports/mortgagemarket-draft). sadly, the report was published solely in Hebrew, though there is an extended abstract (8 pages long) in English at [this link](mortgage_data/Information%20Asymmetry%20and%20the%20Gains%20from%20Shopping%20Evidence%20from%20the%20Israeli%20Mortgage%20Market.pdf)
 
 there is a short version in English of the main results from the paper in thins link [someFile](mortgage_data/Information%20Asymmetry%20and%20the%20Gains%20from%20Shopping%20Evidence%20from%20the%20Israeli%20Mortgage%20Market.pdf)
 
