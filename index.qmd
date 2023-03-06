@@ -2,18 +2,16 @@
 title: "Eviatar Guttman"
 ---
 
-I'm an Economist and data scientists at the Research department of the [Israeli Competition Authority](https://www.gov.il/en/departments/competition/govil-landing-page) (ICA). I like working with data. This site is intended to present some of the code I have done while working in the ICA.
+I am an economist and data scientist working in the Research department of the [Israeli Competition Authority](https://www.gov.il/en/departments/competition/govil-landing-page) (ICA). I have a passion for working with data and this website showcases some of the code that I have created while working at the ICA.
 
 ::: {.callout-warning icon="false"}
 ## disclaimer
 
-*The views expressed herein are entirely mine and should not be purported to reflect those of the Israel competition Authority.*
+Please note that the opinions expressed on this website are my own and do not necessarily reflect the views of the Israel Competition Authority.
 :::
 
-1.  In a research project called [Information problems in the mortgage market in Israel: price dispersion and search](https://www.gov.il/he/departments/publications/reports/mortgagemarket-final) (sadly, the paper was published solely in English though there is an extended abstract in [here](mortgage_data/Information%20Asymmetry%20and%20the%20Gains%20from%20Shopping%20Evidence%20from%20the%20Israeli%20Mortgage%20Market.pdf)) we predicted the entire counter-factual price distribution of mortgage loans had the customers would have asked for more bank bids in a friction-less environment. The [code](1_mortgage.qmd) example shown here replicates the core idea of performing 297 quantile regressions and using its predictions to build a new hypothetical price distribution through simulation.
+1.  In a research project titled [Information problems in the mortgage market in Israel: price dispersion and search](https://www.gov.il/he/departments/publications/reports/mortgagemarket-final) (unfortunately, the full paper was only published in Hebrew, but there is an extended abstract in English available [here](mortgage_data/Information%20Asymmetry%20and%20the%20Gains%20from%20Shopping%20Evidence%20from%20the%20Israeli%20Mortgage%20Market.pdf)) we made predictions of the entire counter-factual price distribution of mortgage loans if customers had requested more bank bids in a friction-less environment.The example [code](1_mortgage.qmd) provided illustrates the core idea behind this analysis.
 
-2.  Merger simulation is a framework that uses economic models grounded in the theory of industrial organization to predict the effect of mergers on prices in markets. Merger simulation is at the frontier of the empirical economics used by competition authorities. The examples shown here are predominant techniques in merger simulation implementation. We starts with a little bit of [background](2_merger_sim_intro.qmd), continue with a [simplified example](3_multinomial_logit.qmd) for clarity and finishes with a more advanced [example](4_nested.qmd) accompanied with production-level code.
+2.  Merger simulation is a cutting-edge technique used by competition authorities to predict the impact of mergers on market prices, and it is based on economic models grounded in industrial organization theory.The examples on this site demonstrate some of the predominant techniques used in merger simulation implementation. We provide some [background](2_merger_sim_intro.qmd) information, a [simplified example](3_multinomial_logit.qmd) for clarity, and a more advanced [example](4_nested.qmd) with production-level code.
 
-My intent is to expand with more examples in the future as time will allow.
-
-You can contact me at [eviatargu\@competition.gov.il]{.underline}
+    I plan to add more examples in the future as time allows. Please feel free to contact me at [**eviatargu\@competition.gov.il**](mailto:eviatargu@competition.gov.il) if you have any questions or comments.
