@@ -1,0 +1,16 @@
+{
+  "hash": "efe5c05ad56a9dfc4d3a45f5155b35c7",
+  "result": {
+    "markdown": "---\ntitle: \"Eviatar Guttman\"\n---\n\n\nI'm an Economist and data scientists at the Israeli Competition Authority. I like working with data. This web site presents some of the fun stuff I have been dealing with.\n\n\n::: {.cell}\n\n```{.r .cell-code}\n1 + 1\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n[1] 2\n```\n:::\n:::\n",
+    "supporting": [
+      "index_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

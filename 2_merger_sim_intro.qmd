@@ -1,0 +1,116 @@
+---
+title: "What is Merger Simulation?"
+editor: visual
+editor_options: 
+  chunk_output_type: console
+---
+
+The next pages presents examples of horizontal merger simulation implemented in R code.
+
+Merger simulation is a quantitative tool to create prediction about the probable outcome effect of a merger on competition. The process can be divided to three parts:\
+(1) Selection of a structural model of supply and demand.\
+(2) Calibration model's parameters.\
+(3) Computation of new equilibrium that will prevail post merger.
+
+Next, I'll briefly describe the selected three parts chosen for the forthcoming examples. Afterwards, a brief view of the equation system that emerge from the model, and finally, a few references for those who'd like to deepen their knowledge in the subject.
+
+\(1\) The structural model
+
+On the supply side we'll use a Bertrand model with differentiated products. On the demand side versions of logit demand systems will be used. This specification is common for competition agencies to work with.\
+
+\(2\) model calibration
+
+Two techniques are common, the harder one is implementing demand estimation of the demand function parameters. It is a demanding process both in terms of the required data and in terms of the required scope of work. Another approach is to calibrate the model using carefully selected parameters - this is what we'll do here.\
+
+\(3\) Equilibrium computation
+
+In the case of a non-linear demand system such as we have here, no analytic solution exists. Some kind of numeric method is required to solve the equation system - here I'll use fixed point iteration.
+
+Next, we explain a little bit about the chosen structural model. here is a link to skip the mathmatical model and go to the first example of [multinomial logit](3_multinomial_logit.qmd)
+
+# Equation system of the structural model
+
+First, the equations of the Bertrand model followed by the a short explanation of two logit models.
+
+## Bertrand model with differentiated products
+
+A very good explanation of how the betrand model works is written by [Jonas Björnerstedt](mailto:jonas@bjornerstedt.org) (Swedish competition authority) and [Frank Verboven](mailto:frank.verboven@kuleuven.be) (University of Leuven) in their [merger simulation implementation in stata](https://sites.google.com/site/frankverbo/data-and-software/merger-simulation-with-nested-logit-demand). The next few images are taken from section 2 of their paper:
+
+![](simulation_data/verboven1.PNG)
+
+![](simulation_data/verboven2.PNG)
+
+![](simulation_data/verboven3.PNG)
+
+## The multinomial logit model
+
+A good explanation of the logit model is in the [vignette](https://cran.r-project.org/web/packages/antitrust/vignettes/Reference.html) of the [r package antitrust](https://cran.r-project.org/web/packages/antitrust/index.html) by authored by Charles Taragin and Michael Sandfort. The explanation below is a selection from the package's vignette:
+
+Logit demand is based on a discrete choice model that assumes that each consumer is willing to purchase at most a single unit of one product from the $n$ products available in the market. The assumptions underlying Logit demand imply that the probability that a consumer purchases product $i \in n$ is given by
+
+```{=tex}
+\begin{align*}
+  s_i=& \frac{\exp(V_i)}{\sum\limits_{k \in n}\exp(V_k)},&
+\end{align*}
+```
+where $s_i$ is product $i$'s *quantity* share and $V_i$ is the (average) indirect utility that a consumer receives from purchasing product $i$. We assume that $V_i$ takes on the following form
+
+```{=tex}
+\begin{align*}
+  V_i=&\delta_i + \alpha p_i,&\alpha<0.
+\end{align*}
+```
+The Logit demand system yields the following own- and cross-price elasticities:
+
+```{=tex}
+\begin{align*}
+  \epsilon_{ii}=&\alpha (1-s_i)p_i \\
+  \epsilon_{ij}=&-\alpha s_jp_j
+\end{align*}
+```
+## Nested Logit
+
+By construction, Logit demand assumes that diversion occurs according to quantity share. While convenient, one potential drawback of this assumption is that diversion according to share may not accurately represent consumer substitution patterns. One way to relax this assumption is to group the $n$ products into $n > H \ge 2$ *nests*, with products in the same nest assumed to be closer substitutes than products in different nests.
+
+The assumptions underlying nested Logit demand imply that the probability that a consumer purchases product $i$ in nest $h\in H$ is given by
+
+```{=tex}
+\begin{align*}
+  s_i=& s_{i|h}s_h,&\\
+  s_{i|h}=&\frac{\exp(\frac{V_i}{\sigma_h})}{\sum\limits_{k \in
+      h}\exp(\frac{V_k}{\sigma_h})},& 1 \ge \sigma_h \ge 0\\
+  s_{h}=& \frac{\exp(\sigma_hI_h)}{\sum\limits_{l\in H}\exp(\sigma_lI_l)},& I_h=\log\sum\limits_{k \in h}\exp\left(\frac{V_k}{\sigma_h}\right).
+\end{align*}
+```
+We assume that $V_i$ takes on the following form
+
+```{=tex}
+\begin{align*}
+  V_i=&\delta_i + \alpha p_i,& \alpha\le 0.
+\end{align*}
+```
+The Nested Logit demand system yields the following own- and cross-price elasticities:
+
+```{=tex}
+\begin{align*}
+  \epsilon_{ii}=&
+    [1-s_i + (\frac{1}{\sigma_h}-1)(1-s_{i|h})]\alpha p_i, \\
+  \epsilon_{ij}=&\begin{cases}
+    -[s_j + (\frac{1}{\sigma_h}-1)s_{j|h}]\alpha p_j, &
+    \text{if $i,j$ are both in nest $h$}.\\
+    -\alpha s_jp_j, & \text{if $i$ is not in nest $h$ but $j$ is}.
+  \end{cases}
+\end{align*}
+```
+Notice how these cross-price elasticities are identical to the non-nested Logit elasticities when products $i,j$ are in different nests, but are larger when products $i,j$ are in the same nests. This observation is consistent with the claim that products within a nest are closer substitutes than products outside of a nest.
+
+## Useful references
+
+For more information about the mathematical implementation and the theory, one can read\
+[Björnerstedt and Verboven](https://www.stata-journal.com/article.html?article=st0349)
+
+To understand more about the Logit demand system (multinumial and nested logit) and the implementation in these pages its best to read [berry 1994](https://www.jstor.org/stable/2555829#metadata_info_tab_contents).
+
+To get a wider perspective about possible implementations for antitrust practitioners, see the work of [Taragin and Sandfort](https://cran.r-project.org/web/packages/antitrust/index.html)
+
+and finally, a very good source to understand the procedure of demand estimaion, a good place to start is [Aviv nevo's practitioner's Guide](https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1430-9134.2000.00513.x)
