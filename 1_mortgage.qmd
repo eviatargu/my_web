@@ -9,8 +9,6 @@ editor_options:
 
 This is a short explanation of the simulation implementation we did in the research [Information problems in the mortgage market in Israel: price dispersion and search](https://www.gov.il/he/departments/publications/reports/mortgagemarket-final). For more information one can read the final report or dive even more into technical details published in the [draft with the annexes](https://www.gov.il/he/departments/publications/reports/mortgagemarket-draft). sadly, the report was published solely in Hebrew, though there is an extended abstract (8 pages long) in English at [this link](mortgage_data/Information%20Asymmetry%20and%20the%20Gains%20from%20Shopping%20Evidence%20from%20the%20Israeli%20Mortgage%20Market.pdf)
 
-there is a short version in English of the main results from the paper in thins link [someFile](mortgage_data/Information%20Asymmetry%20and%20the%20Gains%20from%20Shopping%20Evidence%20from%20the%20Israeli%20Mortgage%20Market.pdf)
-
 The data-base used for the mortgage research consisted of nearly all mortgage data documented by the 3 largest banks in Israel in the years 2015-2017. In addition, we had all official mortgage bids consumers received in those years from the entire banking system. (Accessing this elaborate data is one of the perks of working in the competition authority)
 
 It took me several month to build a unified data-base from the 3 banks. The aim was to keep as much explanatory variables as possible so we can learn what determines the price consumers pay across the entire sample simultaneously.

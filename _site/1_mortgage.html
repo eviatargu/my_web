@@ -203,7 +203,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="background" class="level1">
 <h1>Background</h1>
 <p>This is a short explanation of the simulation implementation we did in the research <a href="https://www.gov.il/he/departments/publications/reports/mortgagemarket-final">Information problems in the mortgage market in Israel: price dispersion and search</a>. For more information one can read the final report or dive even more into technical details published in the <a href="https://www.gov.il/he/departments/publications/reports/mortgagemarket-draft">draft with the annexes</a>. sadly, the report was published solely in Hebrew, though there is an extended abstract (8 pages long) in English at <a href="mortgage_data/Information%20Asymmetry%20and%20the%20Gains%20from%20Shopping%20Evidence%20from%20the%20Israeli%20Mortgage%20Market.pdf">this link</a></p>
-<p>there is a short version in English of the main results from the paper in thins link <a href="mortgage_data/Information%20Asymmetry%20and%20the%20Gains%20from%20Shopping%20Evidence%20from%20the%20Israeli%20Mortgage%20Market.pdf">someFile</a></p>
 <p>The data-base used for the mortgage research consisted of nearly all mortgage data documented by the 3 largest banks in Israel in the years 2015-2017. In addition, we had all official mortgage bids consumers received in those years from the entire banking system. (Accessing this elaborate data is one of the perks of working in the competition authority)</p>
 <p>It took me several month to build a unified data-base from the 3 banks. The aim was to keep as much explanatory variables as possible so we can learn what determines the price consumers pay across the entire sample simultaneously.</p>
 <p>As we learned the data, we observed substantial price dispersion between customers. Even though we practically had everything the bank documented about the loan, regression model’s residuals were highly dispersed. The models presented varying residual dispersion between non-bidders (consumers that don’t get another bid from another bank) and bidders. In addition, our estimates of the effect of extra bid on the price consumer will pay seemed rather small. Our qualitative information about the market suggested that there are substantial <a href="https://en.wikipedia.org/wiki/Search_cost">search costs</a> consumers endure. So, we wanted to exemplify what should be the change in price in a friction-less environment when the customer gets more bids before purchase of a mortgage loan.</p>
@@ -411,12 +410,12 @@ The next function computes the predictions for each list of models.</p>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(customer_10)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  simulation_n id bank prediction A B C
-1            1 10    A       3.74 1 0 0
-2            2 10    A       3.74 1 0 0
-3            3 10    A       3.09 1 0 0
-4            4 10    A       3.29 1 0 0
-5            5 10    A       4.53 1 0 0
-6            6 10    A       3.86 1 0 0</code></pre>
+1            1 10    A       4.09 1 0 0
+2            2 10    A       4.41 1 0 0
+3            3 10    A       3.18 1 0 0
+4            4 10    A       3.82 1 0 0
+5            5 10    A       3.53 1 0 0
+6            6 10    A       3.34 1 0 0</code></pre>
 </div>
 </div>
 <p>It’s not easy to look at 7 distributions simultaneously as well as in this case it doesn’t really make sense. If the customer originally was from bank C (where she runs her checking account and inclined to ask for a mortgage there), than we would like to see what she could have gained from an additional bid from bank A, B or both.</p>
